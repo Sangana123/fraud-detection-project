@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Détection de fraude bancaire</title>
+
+<style>
+
+body{
+    font-family: Arial;
+    background:#f4f4f4;
+}
+
+.container{
+    width:700px;
+    margin:auto;
+    margin-top:30px;
+    background:white;
+    padding:30px;
+    border-radius:10px;
+}
+
+input{
+    width:100%;
+    padding:10px;
+    margin-top:10px;
+}
+
+button{
+    width:100%;
+    padding:10px;
+    margin-top:15px;
+    background:#007BFF;
+    color:white;
+    border:none;
+    cursor:pointer;
+}
+
+.result{
+    margin-top:20px;
+    text-align:center;
+    font-size:22px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Détection de fraude bancaire</h1>
+
+<form action="/predict" method="post">
+
+<input name="transactions_last_24h"
+       placeholder="transactions_last_24h"
+       required>
+
+<input name="transactions_last_1h"
+       placeholder="transactions_last_1h"
+       required>
+
+<input name="amount_aed"
+       placeholder="amount_aed"
+       required>
+
+<input name="items_count"
+       placeholder="items_count"
+       required>
+
+<input name="hour"
+       placeholder="hour"
+       required>
+
+<input name="day_of_week"
+       placeholder="day_of_week"
+       required>
+
+<input name="avg_item_price"
+       placeholder="avg_item_price"
+       required>
+
+<input name="payment_method_bank_transfer"
+       placeholder="payment_method_bank_transfer (0 ou 1)"
+       required>
+
+<input name="payment_method_card"
+       placeholder="payment_method_card (0 ou 1)"
+       required>
+
+<input name="payment_method_google_pay"
+       placeholder="payment_method_google_pay (0 ou 1)"
+       required>
+
+<input name="payment_method_paypal"
+       placeholder="payment_method_paypal (0 ou 1)"
+       required>
+	   
+<input name="ip_risk_score"
+       placeholder="ip_risk_score (uniquement pour le modèle enrichi)"> 
+
+<button type="submit"
+        name="model_type"
+        value="baseline">
+
+    Prédiction modèle standard
+
+</button>
+
+<button type="submit"
+        name="model_type"
+        value="enriched">
+
+    Prédiction modèle enrichi IP
+
+</button>
+
+</form>
+
+<div class="result">
+
+{% if prediction_text %}
+
+<h3>{{ prediction_text }}</h3>
+
+<p>
+Modèle utilisé :
+<b>{{ model_used }}</b>
+</p>
+
+<p>
+Probabilité de fraude :
+<b>{{ probability }} %</b>
+</p>
+
+{% endif %}
+
+</div>
+
+</div>
+
+</body>
+</html>
