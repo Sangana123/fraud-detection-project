@@ -229,7 +229,7 @@ The work combines concepts from:
 
 ## Author
 
-Sangana
+Sangana Nguetigal Benjamin
 
 Master's Thesis Project
 
