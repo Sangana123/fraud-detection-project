@@ -231,6 +231,4 @@ The work combines concepts from:
 
 Sangana Nguetigal Benjamin
 
-Master's Thesis Project
-
 Machine Learning • Data Science • Fraud Detection • Python • Flask
